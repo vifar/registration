@@ -12,28 +12,24 @@ class FormContainer extends Component {
                 businessAddress: '',
                 telephoneNum: '',
                 emailAddress: ''
-            },
-
-            state: ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+            }
         }
 
         this.submitForm = this.submitForm.bind(this);
         this.emptyForm = this.emptyForm.bind(this);
-
+        
         this.handleFirstName = this.handleFirstName.bind(this);
         this.handleLastName = this.handleLastName.bind(this);
         this.handleNpiNumber = this.handleNpiNumber.bind(this);
         this.handleBusinessAddress = this.handleBusinessAddress.bind(this);
         this.handleTelephoneNum = this.handleTelephoneNum.bind(this);
         this.handleEmailAddress = this.handleEmailAddress.bind(this);
-
     }
     
     submitForm(e) {
         e.preventDefault();
-        let new_user_registration = this.state.new_user;
-        alert(new_user_registration);
-        console.log(`New User: ${this.state.new_user.emailAddress.toString}`);
+        alert("New User: " + JSON.stringify(this.state.new_user));
+        console.log(this.state.new_user);
     }
     
     emptyForm(e) {
@@ -48,27 +44,27 @@ class FormContainer extends Component {
                 emailAddress: ''
             }
         })
-        console.log("Successfully Cleared Data " + this.state.new_user);
+        console.log("Cleared State");
     }
 
     handleFirstName(e) {
         let firstName = e.target.value;
         this.setState(
-          prevState => ({
-            newUser: {
-              ...prevState.newUser,
-              firstName: firstName
+            prevState => ({
+            new_user: {
+                ...prevState.new_user,
+                firstName: firstName
             }
-          })
+            })
         );
-      }
+    }
 
     handleLastName(e) {
         let lastName = e.target.value;
         this.setState(
             prevState => ({
-            newUser: {
-                ...prevState.newUser,
+            new_user: {
+                ...prevState.new_user,
                 lastName: lastName
             }
             })
@@ -79,8 +75,8 @@ class FormContainer extends Component {
         let npiNum = e.target.value;
         this.setState(
           prevState => ({
-            newUser: {
-              ...prevState.newUser,
+            new_user: {
+              ...prevState.new_user,
               npiNum: npiNum
             }
           })
@@ -91,8 +87,8 @@ class FormContainer extends Component {
         let businessAddress = e.target.value;
         this.setState(
           prevState => ({
-            newUser: {
-              ...prevState.newUser,
+            new_user: {
+              ...prevState.new_user,
               businessAddress: businessAddress
             }
           })
@@ -103,8 +99,8 @@ class FormContainer extends Component {
         let telephoneNum = e.target.value;
         this.setState(
           prevState => ({
-            newUser: {
-              ...prevState.newUser,
+            new_user: {
+              ...prevState.new_user,
               telephoneNum: telephoneNum
             }
           }),
@@ -115,22 +111,14 @@ class FormContainer extends Component {
         let emailAddress = e.target.value;
         this.setState(
           prevState => ({
-            newUser: {
-              ...prevState.newUser,
+            new_user: {
+              ...prevState.new_user,
               emailAddress: emailAddress
             }
           })
         );
     }
 
-    validateEmail(e) {
-        const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        const { validation } = this.state
-        if (!regex.test(e.target.value)) {
-            alert("Please enter a valid email address");
-        }
-        this.setState({ validation });
-    }
     render() {
         return (
             <form onSubmit={this.submitForm}>
@@ -138,7 +126,6 @@ class FormContainer extends Component {
                     inputType={"text"} 
                     title={"First Name: "} 
                     name={"name"} 
-                    value={this.state.new_user.firstName}
                     placeholder={"Enter your first name"}
                     handleChange={this.handleFirstName}
                     style={inputStyle}/> {/* First Name */}
@@ -146,7 +133,6 @@ class FormContainer extends Component {
                     inputType={"text"} 
                     title={"Last Name: "} 
                     name={"lastName"} 
-                    value={this.state.new_user.lastName}
                     placeholder={"Enter your last name"}
                     handleChange={this.handleLastName}
                     style={inputStyle}/> {/* Last Name */}
@@ -154,7 +140,6 @@ class FormContainer extends Component {
                     inputType={"text"} 
                     title={"NPI Number: "} 
                     name={"npiNum"} 
-                    value={this.state.new_user.npiNum}
                     placeholder={"Enter NPI number"}
                     handleChange={this.handleNpiNumber}
                     style={inputStyle}/> {/* Npi number*/}
@@ -162,7 +147,6 @@ class FormContainer extends Component {
                     inputType={"text"} 
                     title={"Business Address: "} 
                     name={"businessAddress"} 
-                    value={this.state.new_user.businessAddress}
                     placeholder={"Enter your business address"}
                     handleChange={this.handleBusinessAddress}
                     style={inputStyle}/> {/* Business Address */}
@@ -170,16 +154,13 @@ class FormContainer extends Component {
                     inputType={"text"} 
                     title={"Telephone Number: "} 
                     name={"telephoneNum"} 
-                    value={this.state.new_user.telephoneNum}
                     placeholder={"Enter your telephone number"}
                     handleChange={this.handleTelephoneNum}
-                    onChange={this.validateEmail}
                     style={inputStyle}/> {/* Telephone Number */}
                 <Input 
                     inputType={"text"} 
                     title={"Email Address: "} 
                     name={"emailAddress"} 
-                    value={this.state.new_user.emailAddress}
                     placeholder={"Enter your email address"}
                     handleChange={this.handleEmailAddress}
                     style={inputStyle}/> {/* Email Address */}

@@ -6,7 +6,7 @@ class App extends Component {
     render() {
         return (
             <div className="col-md-6 registration-form">
-                <h3>Registration Form</h3>
+                <h3>Availity Registration Form</h3>
                 <FormContainer />
             </div>
         );
