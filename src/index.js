@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import FormContainer from './container';
-
-const styles = {
-    fontFamily: "sans-serif",
-    textAlign: "center"
-};
 
 class App extends Component {
     render() {
         return (
-            <div className="col-md-6">
+            <div className="col-md-6 registration-form">
                 <h3>Registration Form</h3>
                 <FormContainer />
             </div>
@@ -18,4 +13,4 @@ class App extends Component {
     }
 }
 
-render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
